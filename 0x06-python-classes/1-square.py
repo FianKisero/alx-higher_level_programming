@@ -1,11 +1,13 @@
 #!/usr/bin/python3
-""" Defining a class square """
+"""module contains class Square"""
 
 
 class Square:
-    """ Defining a class square """
+    """Instantiates a private instance attribute
+    with no type/value verification"""
     def __init__(self, size):
-        """ Initializing a square class
-        Args: size: size of the square
-         """
-        self.__size =
+        """Initializes a square.
+        Arg:
+            size: size of the square
+        """
+        self.__size = size
