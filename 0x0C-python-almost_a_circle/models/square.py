@@ -1,60 +1,64 @@
 #!/usr/bin/python3
-"""Inherits a square from a rectangle"""
-
+"""creating a class square that inherits from class rectangle"""
 from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
-    """defines a square"""
+    """ class square"""
     def __init__(self, size, x=0, y=0, id=None):
-        """initializes a square using rectangle"""
+        """initializing the instance"""
         super().__init__(size, size, x, y, id)
 
     def __str__(self):
-        """prints info about square"""
-        return "[{}] ({}) {}/{} - {}".format(type(self).__name__,
-                                             self.id,
-                                             self.x,
-                                             self.y,
-                                             self.width)
+        """ __str__ magic method"""
+        square = "[Square] "
+        square_id = "({}) ".format(self.id)
+        square_xy = "{}/{} - ".format(self.x, self.y)
+        square_size = "{}".format(self.width)
+
+        return square + square_id + square_xy + square_size
 
     @property
     def size(self):
-        """size getter"""
+        """getting the size of the square"""
         return self.width
 
     @size.setter
-    def size(self, size):
-        """size setter"""
-        self.width = size
-        self.height = size
+    def size(self, value):
+        """setting the value of the size"""
+        self.width = value
+        self.height = value
 
     def update(self, *args, **kwargs):
-        """updates attributes to args and kwargs"""
-        if len(args) > 0:
-            for i, m in enumerate(args):
-                if i == 0:
-                    self.id = m
-                if i == 1:
-                    self.size = m
-                if i == 2:
-                    self.x = m
-                if i == 3:
-                    self.y = m
-        elif len(kwargs) > 0:
-            for j, k in kwargs.items():
-                if j == "id":
-                    self.id = k
-                if j == "size":
-                    self.size = k
-                if j == "x":
-                    self.x = k
-                if j == "y":
-                    self.y = k
+        """ creating the update function"""
+
+        count = 0
+        if args is not None and len(args) != 0:
+            argument_list = ["id", "size", "x", "y"]
+            for values in args:
+                if argument_list[count] == "size":
+                    setattr(self, "width", values)
+                    setattr(self, "height", values)
+                else:
+                    setattr(self, argument_list[count], values)
+                count += 1
+        else:
+            for key, value in kwargs.items():
+                if key == "size":
+                    setattr(self, 'width', value)
+                    setattr(self, 'height', value)
+                else:
+                    setattr(self, key, value)
 
     def to_dictionary(self):
-        """prints the dictionary representation of the square"""
-        obj = {}
-        for i in ['id', 'size', 'x', 'y']:
-            obj[i] = getattr(self, i)
-        return obj
+        """ method to return a square to a dictionary"""
+        my_list = ["id", "size", "x", "y"]
+        dictionary = {}
+
+        for value in my_list:
+            if value == 'size':
+                dictionary[value] = getattr(self, 'width')
+            else:
+                dictionary[value] = getattr(self, value)
+
+        return (dictionary)
