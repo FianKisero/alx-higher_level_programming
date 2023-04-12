@@ -6,3 +6,4 @@ const myObject = {
 console.log(myObject);
 myObject.type = 'object';
 myObject.value = 89;
+console.log(myObject);

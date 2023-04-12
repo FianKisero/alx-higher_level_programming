@@ -7,3 +7,4 @@ if (!args[2]) {
   for (let i = 0; i < args[2]; i++) {
     console.log('C is fun');
   }
+}

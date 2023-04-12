@@ -10,3 +10,4 @@ if (!args[2] || args.length < 4) {
   }
   array.sort(function (a, b) { return a - b; });
   console.log(array.slice(-2)[0]);
+}
